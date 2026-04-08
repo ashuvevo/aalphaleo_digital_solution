@@ -16,6 +16,10 @@ export const metadata: Metadata = {
   title: "Aalphaleo Digital Solution | Solving Your Business Problem.",
   description:
     "Premium Shopify custom-coded website development services for modern eCommerce brands.",
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({

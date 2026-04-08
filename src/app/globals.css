@@ -3,25 +3,51 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f6f8fc;
+  --foreground: #0f172a;
+  --muted: #5f6b85;
+  --surface: #ffffff;
+  --surface-border: #e7ebf3;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  scroll-behavior: smooth;
 }
 
 body {
-  color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--foreground);
+  font-family: var(--font-manrope), sans-serif;
+  text-rendering: geometricPrecision;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-space-grotesk), sans-serif;
+}
+
+::selection {
+  background: rgba(99, 102, 241, 0.2);
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .section-shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .surface-card {
+    @apply rounded-3xl border border-slate-200/80 bg-white/90 shadow-[0_16px_40px_-22px_rgba(17,24,39,0.35)] backdrop-blur;
+  }
+
+  .gradient-btn {
+    @apply rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-blue-500 px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_-12px_rgba(79,70,229,0.9)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_-12px_rgba(37,99,235,0.9)];
+  }
+
+  .ghost-btn {
+    @apply rounded-xl border border-slate-300 bg-white/80 px-6 py-3 text-sm font-semibold text-slate-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-400 hover:bg-white;
   }
 }

@@ -20,9 +20,8 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/60 bg-white/70 backdrop-blur-xl">
       <nav className="section-shell flex h-20 items-center justify-between">
-        <a href="#home" className="flex items-center gap-3 text-slate-900">
+        <a href="#home" className="text-slate-900" aria-label="Aalphaleo Digital Solution home">
           <Image src="/logo.png" alt="Aalphaleo Digital Solution logo" width={44} height={44} className="h-11 w-11 rounded-xl" priority />
-          <span className="text-lg font-bold tracking-tight">Aalphaleo Digital Solution</span>
         </a>
 
         <ul className="hidden items-center gap-8 md:flex">

@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   title: "Aalphaleo Digital Solution | Solving Your Business Problem.",
   description:
     "Premium Shopify custom-coded website development services for modern eCommerce brands.",
+  verification: {
+    google: "OaZh7DwKP914_NUK8qhHi9LKP0GSfEimK3dRIeDzn44",
+  },
   icons: {
     icon: "/logo.png",
     apple: "/logo.png",

@@ -42,7 +42,7 @@ export default function ServicesPage() {
                 <Link
                   key={service.href}
                   href={service.href}
-                  className="rounded-2xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-indigo-200"
+                  className="rounded-2xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-orange-200"
                 >
                   <p className="text-sm font-semibold text-slate-900">{service.label}</p>
                   <p className="mt-2 text-sm text-slate-600">{service.description}</p>

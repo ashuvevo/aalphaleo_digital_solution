@@ -36,7 +36,7 @@ export function Process() {
                 transition={{ duration: 0.4, delay: index * 0.08 }}
                 className="relative rounded-2xl border border-slate-200 bg-white p-4"
               >
-                <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 text-sm font-bold text-white">
+                <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-orange-600 text-sm font-bold text-white">
                   {index + 1}
                 </span>
                 <p className="text-sm font-semibold text-slate-800">{step}</p>

@@ -21,7 +21,7 @@ export function Hero() {
           transition={{ duration: 0.6 }}
           className="space-y-6"
         >
-          <span className="inline-flex rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-indigo-700">
+          <span className="inline-flex rounded-full border border-orange-100 bg-orange-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-orange-700">
             Solving Your Business Problem.
           </span>
           <h1 className="text-4xl font-bold leading-tight text-slate-900 sm:text-5xl lg:text-6xl">
@@ -35,7 +35,7 @@ export function Hero() {
           <ul className="grid gap-3 sm:grid-cols-2">
             {highlights.map((item) => (
               <li key={item} className="flex items-start gap-2 text-sm text-slate-700">
-                <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-indigo-600" />
+                <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-orange-600" />
                 <span>{item}</span>
               </li>
             ))}
@@ -64,7 +64,7 @@ export function Hero() {
           transition={{ duration: 0.65, delay: 0.1 }}
           className="surface-card relative overflow-hidden p-4 sm:p-6"
         >
-          <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gradient-to-r from-indigo-500/20 to-blue-400/20 blur-2xl" />
+          <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gradient-to-r from-orange-500/20 to-red-400/20 blur-2xl" />
           <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
             <div className="mb-4 flex items-center justify-between">
               <p className="text-sm font-semibold text-slate-800">Shopify Dashboard</p>
@@ -81,7 +81,7 @@ export function Hero() {
               <div className="rounded-xl bg-white p-4 shadow-sm">
                 <p className="text-xs text-slate-500">Conversion Rate</p>
                 <p className="pt-2 text-2xl font-bold text-slate-900">3.8%</p>
-                <p className="pt-1 text-xs text-indigo-600">Optimized</p>
+                <p className="pt-1 text-xs text-orange-600">Optimized</p>
               </div>
             </div>
             <div className="mt-4 rounded-xl bg-white p-4 shadow-sm">
@@ -98,7 +98,7 @@ export function Hero() {
                       <span>{item.value}%</span>
                     </div>
                     <div className="h-2 rounded-full bg-slate-100">
-                      <div className={`h-2 rounded-full bg-gradient-to-r from-indigo-500 to-blue-500 ${item.widthClass}`} />
+                      <div className={`h-2 rounded-full bg-gradient-to-r from-orange-500 to-red-500 ${item.widthClass}`} />
                     </div>
                   </div>
                 ))}

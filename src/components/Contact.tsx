@@ -22,13 +22,13 @@ export function Contact() {
 
           <div className="mt-8 space-y-4">
             <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
-              <Phone className="h-4 w-4 text-indigo-600" />
+              <Phone className="h-4 w-4 text-orange-600" />
               <a href="tel:+919288621081" className="text-sm font-medium text-slate-800">
                 +91 9288621081
               </a>
             </div>
             <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
-              <Globe className="h-4 w-4 text-indigo-600" />
+              <Globe className="h-4 w-4 text-orange-600" />
               <a
                 href="https://www.aalphaleo.com"
                 target="_blank"
@@ -53,7 +53,7 @@ export function Contact() {
             <input
               type="text"
               name="name"
-              className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-indigo-500"
+              className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-orange-500"
               placeholder="Your name"
             />
           </label>
@@ -62,7 +62,7 @@ export function Contact() {
             <input
               type="email"
               name="email"
-              className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-indigo-500"
+              className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-orange-500"
               placeholder="you@example.com"
             />
           </label>
@@ -71,7 +71,7 @@ export function Contact() {
             <input
               type="tel"
               name="phone"
-              className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-indigo-500"
+              className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-orange-500"
               placeholder="+91"
             />
           </label>
@@ -80,7 +80,7 @@ export function Contact() {
             <textarea
               name="message"
               rows={4}
-              className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-indigo-500"
+              className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-orange-500"
               placeholder="Tell us about your project"
             />
           </label>

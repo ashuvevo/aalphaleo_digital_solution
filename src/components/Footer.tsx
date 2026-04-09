@@ -34,7 +34,7 @@ export function Footer() {
               <a
                 key={index}
                 href="#"
-                className="inline-flex rounded-lg border border-slate-200 p-2 text-slate-500 transition hover:border-indigo-200 hover:text-indigo-600"
+                className="inline-flex rounded-lg border border-slate-200 p-2 text-slate-500 transition hover:border-orange-200 hover:text-orange-600"
                 aria-label="social-icon"
               >
                 <Icon className="h-4 w-4" />

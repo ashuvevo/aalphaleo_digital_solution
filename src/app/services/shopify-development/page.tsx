@@ -76,14 +76,14 @@ export default function ShopifyDevelopmentPage() {
                   key={item.name}
                   className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
                 >
-                  <p className="text-sm font-semibold uppercase tracking-wide text-indigo-600">
+                  <p className="text-sm font-semibold uppercase tracking-wide text-orange-600">
                     {item.name}
                   </p>
                   <p className="mt-2 text-2xl font-bold text-slate-900">{item.price}</p>
                   <ul className="mt-5 space-y-2">
                     {item.features.map((feature) => (
                       <li key={feature} className="flex gap-3 text-sm text-slate-600">
-                        <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-indigo-500" />
+                        <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-orange-500" />
                         <span>{feature}</span>
                       </li>
                     ))}

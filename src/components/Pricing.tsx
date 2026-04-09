@@ -51,7 +51,7 @@ export function Pricing() {
         transition={{ duration: 0.6 }}
         className="mx-auto max-w-2xl text-center"
       >
-        <p className="text-sm font-semibold uppercase tracking-widest text-indigo-600">
+        <p className="text-sm font-semibold uppercase tracking-widest text-orange-600">
           Pricing
         </p>
         <h2 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">
@@ -70,11 +70,11 @@ export function Pricing() {
             className={cn(
               "surface-card p-7",
               plan.featured &&
-                "relative border-indigo-300 bg-gradient-to-b from-indigo-50 to-white shadow-[0_18px_40px_-18px_rgba(79,70,229,0.65)]",
+                "relative border-orange-300 bg-gradient-to-b from-orange-50 to-white shadow-[0_18px_40px_-18px_rgba(249,115,22,0.5)]",
             )}
           >
             {plan.featured && (
-              <span className="absolute right-6 top-6 rounded-full bg-indigo-600 px-3 py-1 text-xs font-semibold text-white">
+              <span className="absolute right-6 top-6 rounded-full bg-orange-600 px-3 py-1 text-xs font-semibold text-white">
                 Most Popular
               </span>
             )}
@@ -84,7 +84,7 @@ export function Pricing() {
             <ul className="mt-6 space-y-3">
               {plan.features.map((feature) => (
                 <li key={feature} className="flex items-start gap-2 text-sm text-slate-700">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-indigo-600" />
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-orange-600" />
                   <span>{feature}</span>
                 </li>
               ))}

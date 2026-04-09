@@ -23,7 +23,7 @@ export function ShopifySection() {
           transition={{ duration: 0.55 }}
           className="space-y-5"
         >
-          <p className="text-sm font-semibold uppercase tracking-widest text-indigo-600">
+          <p className="text-sm font-semibold uppercase tracking-widest text-orange-600">
             Core Expertise
           </p>
           <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
@@ -37,7 +37,7 @@ export function ShopifySection() {
           <ul className="grid gap-3 sm:grid-cols-2">
             {features.map((feature) => (
               <li key={feature} className="flex items-start gap-2 text-sm text-slate-700">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-indigo-600" />
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-orange-600" />
                 {feature}
               </li>
             ))}
@@ -54,7 +54,7 @@ export function ShopifySection() {
           <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-6">
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-base font-semibold text-slate-900">Storefront Preview</h3>
-              <span className="rounded-full bg-indigo-100 px-3 py-1 text-xs font-medium text-indigo-700">
+              <span className="rounded-full bg-orange-100 px-3 py-1 text-xs font-medium text-orange-700">
                 Custom Coded
               </span>
             </div>
@@ -63,7 +63,7 @@ export function ShopifySection() {
                 {["Hero Banner", "Featured", "Checkout"].map((label) => (
                   <div key={label} className="rounded-xl bg-white p-3 shadow-sm">
                     <p className="text-xs text-slate-500">{label}</p>
-                    <div className="mt-2 h-2 rounded bg-gradient-to-r from-indigo-500 to-blue-500" />
+                    <div className="mt-2 h-2 rounded bg-gradient-to-r from-orange-500 to-red-500" />
                   </div>
                 ))}
               </div>

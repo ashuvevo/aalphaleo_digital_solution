@@ -36,7 +36,7 @@ export function WhyChoose() {
             transition={{ duration: 0.4, delay: index * 0.08 }}
             className="surface-card p-5 text-center"
           >
-            <div className="mx-auto inline-flex rounded-xl bg-indigo-50 p-3 text-indigo-600">
+            <div className="mx-auto inline-flex rounded-xl bg-orange-50 p-3 text-orange-600">
               <item.icon className="h-5 w-5" />
             </div>
             <p className="mt-3 text-sm font-semibold text-slate-800">{item.title}</p>

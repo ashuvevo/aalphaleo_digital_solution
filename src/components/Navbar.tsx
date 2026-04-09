@@ -26,7 +26,7 @@ export function Navbar() {
             alt="Aalphaleo Digital Solution logo"
             width={300}
             height={300}
-            className="h-auto w-[300px] rounded-xl"
+            className="h-auto w-[150px] rounded-xl"
             priority
           />
         </Link>

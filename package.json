@@ -4,27 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "prisma generate",
-    "deploy:setup": "prisma db push && node prisma/seed.mjs",
-    "admin:reset": "node prisma/reset-admin.mjs",
-    "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev",
-    "prisma:studio": "prisma studio"
+    "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "^6.8.2",
-    "bcryptjs": "^3.0.2",
     "clsx": "^2.1.1",
     "framer-motion": "^12.38.0",
     "lucide-react": "^1.7.0",
     "next": "14.2.35",
-    "next-auth": "^4.24.13",
     "react": "^18",
     "react-dom": "^18",
-    "react-quill": "^2.0.0",
     "tailwind-merge": "^3.5.0",
     "zod": "^4.1.12"
   },
@@ -36,10 +26,6 @@
     "eslint-config-next": "14.2.35",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5",
-    "prisma": "^6.8.2"
-  },
-  "prisma": {
-    "seed": "node prisma/seed.mjs"
+    "typescript": "^5"
   }
 }

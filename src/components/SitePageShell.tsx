@@ -1,13 +1,15 @@
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
-import { getPublishedBlogs, getSiteSettings } from "@/lib/cms";
+import { publishedBlogPosts } from "@/lib/blog";
+import { defaultSiteSettings } from "@/types/cms";
 
 type SitePageShellProps = {
   children: React.ReactNode;
 };
 
-export async function SitePageShell({ children }: SitePageShellProps) {
-  const [settings, blogs] = await Promise.all([getSiteSettings(), getPublishedBlogs(3)]);
+export function SitePageShell({ children }: SitePageShellProps) {
+  const settings = defaultSiteSettings;
+  const blogs = publishedBlogPosts.slice(0, 3);
 
   return (
     <div className="relative overflow-hidden">

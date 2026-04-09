@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SitePageShell } from "@/components/SitePageShell";
-import { getPublishedBlogs } from "@/lib/cms";
+import { publishedBlogPosts } from "@/lib/blog";
 
 export const revalidate = 180;
 
@@ -11,8 +11,8 @@ export const metadata: Metadata = {
   description: "Insights on Shopify development, digital marketing, and business growth.",
 };
 
-export default async function BlogPage() {
-  const posts = await getPublishedBlogs();
+export default function BlogPage() {
+  const posts = publishedBlogPosts;
 
   return (
     <SitePageShell>

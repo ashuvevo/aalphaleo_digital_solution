@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { SitePageShell } from "@/components/SitePageShell";
-import { getPublishedBlogBySlug } from "@/lib/cms";
+import { getPublishedBlogBySlug } from "@/lib/blog";
 
 export const revalidate = 180;
 
@@ -13,7 +13,7 @@ type Params = {
 };
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const post = await getPublishedBlogBySlug(params.slug);
+  const post = getPublishedBlogBySlug(params.slug);
 
   if (!post) {
     return {
@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 }
 
 export default async function BlogPostPage({ params }: Params) {
-  const post = await getPublishedBlogBySlug(params.slug);
+  const post = getPublishedBlogBySlug(params.slug);
 
   if (!post) {
     notFound();
@@ -57,8 +57,8 @@ export default async function BlogPostPage({ params }: Params) {
     "@type": "BlogPosting",
     headline: post.title,
     image: post.featuredImage ? [post.featuredImage] : undefined,
-    datePublished: (post.publishedAt || post.createdAt).toISOString(),
-    dateModified: post.updatedAt.toISOString(),
+    datePublished: new Date(post.publishedAt || post.createdAt).toISOString(),
+    dateModified: new Date(post.updatedAt).toISOString(),
     author: {
       "@type": "Person",
       name: post.author,

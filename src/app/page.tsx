@@ -5,15 +5,15 @@ import { Process } from "@/components/Process";
 import { SitePageShell } from "@/components/SitePageShell";
 import { ShopifySection } from "@/components/ShopifySection";
 import { WhyChoose } from "@/components/WhyChoose";
-import { getWebsiteContent } from "@/lib/cms";
 import { HeroSection } from "@/sections/HeroSection";
 import { PricingSection } from "@/sections/PricingSection";
 import { ServicesSection } from "@/sections/ServicesSection";
+import { defaultWebsiteContent } from "@/types/cms";
 
 export const revalidate = 300;
 
-export default async function Home() {
-  const content = await getWebsiteContent();
+export default function Home() {
+  const content = defaultWebsiteContent;
 
   return (
     <SitePageShell>

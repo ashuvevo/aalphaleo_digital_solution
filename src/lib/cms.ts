@@ -49,29 +49,30 @@ function mergeSiteSettings(data?: Partial<SiteSettingsData>): SiteSettingsData {
 }
 
 async function upsertDefaults() {
-  await prisma.content.upsert({
-    where: { key: "website" },
-    create: {
-      key: "website",
-      data: defaultWebsiteContent,
-    },
-    update: {},
-  });
-
-  await prisma.content.upsert({
-    where: { key: "settings" },
-    create: {
-      key: "settings",
-      data: defaultSiteSettings,
-    },
-    update: {},
-  });
+  try {
+    await prisma.content.upsert({
+      where: { key: "website" },
+      create: { key: "website", data: defaultWebsiteContent },
+      update: {},
+    });
+    await prisma.content.upsert({
+      where: { key: "settings" },
+      create: { key: "settings", data: defaultSiteSettings },
+      update: {},
+    });
+  } catch {
+    // DB not ready yet — silently skip, defaults will be used
+  }
 }
 
 export async function getWebsiteContent(): Promise<WebsiteContentData> {
-  await upsertDefaults();
-  const row = await prisma.content.findUnique({ where: { key: "website" } });
-  return mergeWebsiteContent((row?.data as Partial<WebsiteContentData>) ?? undefined);
+  try {
+    await upsertDefaults();
+    const row = await prisma.content.findUnique({ where: { key: "website" } });
+    return mergeWebsiteContent((row?.data as Partial<WebsiteContentData>) ?? undefined);
+  } catch {
+    return mergeWebsiteContent(undefined);
+  }
 }
 
 export async function updateWebsiteContent(data: WebsiteContentData) {
@@ -88,9 +89,13 @@ export async function updateWebsiteContent(data: WebsiteContentData) {
 }
 
 export async function getSiteSettings(): Promise<SiteSettingsData> {
-  await upsertDefaults();
-  const row = await prisma.content.findUnique({ where: { key: "settings" } });
-  return mergeSiteSettings((row?.data as Partial<SiteSettingsData>) ?? undefined);
+  try {
+    await upsertDefaults();
+    const row = await prisma.content.findUnique({ where: { key: "settings" } });
+    return mergeSiteSettings((row?.data as Partial<SiteSettingsData>) ?? undefined);
+  } catch {
+    return mergeSiteSettings(undefined);
+  }
 }
 
 export async function updateSiteSettings(data: SiteSettingsData) {
@@ -107,13 +112,21 @@ export async function updateSiteSettings(data: SiteSettingsData) {
 }
 
 export async function getPublishedBlogs(limit?: number): Promise<BlogPost[]> {
-  return prisma.blogPost.findMany({
-    where: { isPublished: true },
-    orderBy: { createdAt: "desc" },
-    ...(typeof limit === "number" ? { take: limit } : {}),
-  });
+  try {
+    return await prisma.blogPost.findMany({
+      where: { isPublished: true },
+      orderBy: { createdAt: "desc" },
+      ...(typeof limit === "number" ? { take: limit } : {}),
+    });
+  } catch {
+    return [];
+  }
 }
 
 export async function getAllBlogs(): Promise<BlogPost[]> {
-  return prisma.blogPost.findMany({ orderBy: { createdAt: "desc" } });
+  try {
+    return await prisma.blogPost.findMany({ orderBy: { createdAt: "desc" } });
+  } catch {
+    return [];
+  }
 }

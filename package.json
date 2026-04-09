@@ -9,6 +9,7 @@
     "lint": "next lint",
     "postinstall": "prisma generate",
     "deploy:setup": "prisma db push && node prisma/seed.mjs",
+    "admin:reset": "node prisma/reset-admin.mjs",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio"

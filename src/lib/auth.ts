@@ -3,17 +3,20 @@ import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "@/lib/prisma";
 
+const DEFAULT_ADMIN_EMAIL = (process.env.ADMIN_EMAIL || "admin@example.com").toLowerCase();
+const DEFAULT_ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";
+
 async function ensureDefaultAdmin() {
   const existing = await prisma.user.findUnique({
-    where: { email: "admin@example.com" },
+    where: { email: DEFAULT_ADMIN_EMAIL },
   });
 
   if (!existing) {
-    const passwordHash = await bcrypt.hash("admin123", 12);
+    const passwordHash = await bcrypt.hash(DEFAULT_ADMIN_PASSWORD, 12);
 
     await prisma.user.create({
       data: {
-        email: "admin@example.com",
+        email: DEFAULT_ADMIN_EMAIL,
         passwordHash,
         role: "ADMIN",
       },

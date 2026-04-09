@@ -2,25 +2,39 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SitePageShell } from "@/components/SitePageShell";
-import { publishedBlogPosts } from "@/lib/blog";
+import { blogPosts } from "@/lib/blogData";
 
 export const revalidate = 180;
 
 export const metadata: Metadata = {
-  title: "Blog | Aalphaleo Digital Solution",
-  description: "Insights on Shopify development, digital marketing, and business growth.",
+  title: "Shopify Custom-Coded Website Blog | Aalphaleo Digital Solution",
+  description:
+    "Read 25 SEO-focused guides on Shopify custom-coded website development, Shopify store setup, speed, SEO, and conversion growth.",
+  keywords: [
+    "Shopify custom-coded website",
+    "Shopify website development",
+    "Shopify eCommerce development",
+    "custom Shopify store",
+    "Shopify store development",
+    "Shopify website for business",
+    "Shopify store setup",
+    "Shopify development company",
+  ],
 };
 
 export default function BlogPage() {
-  const posts = publishedBlogPosts;
+  const posts = blogPosts;
 
   return (
     <SitePageShell>
       <section className="section-shell py-16 sm:py-20">
         <p className="text-sm font-semibold uppercase tracking-widest text-orange-600">Blog</p>
-        <h1 className="mt-3 text-4xl font-bold text-slate-900 sm:text-5xl">Latest Articles</h1>
+        <h1 className="mt-3 text-4xl font-bold text-slate-900 sm:text-5xl">
+          Shopify Custom-Coded Website Blog
+        </h1>
         <p className="mt-4 max-w-2xl text-slate-600">
-          Learn practical strategies for eCommerce growth, Shopify customization, and digital performance.
+          Explore practical long-form guides on Shopify website development, Shopify eCommerce
+          development, and conversion-focused store growth.
         </p>
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -39,12 +53,12 @@ export default function BlogPage() {
                 {new Date(post.createdAt).toLocaleDateString()}
               </p>
               <h2 className="mt-2 text-xl font-semibold text-slate-900">{post.title}</h2>
-              <p className="mt-2 text-sm text-slate-600">By {post.author}</p>
+              <p className="mt-2 text-sm text-slate-600">{post.excerpt}</p>
               <Link
                 href={`/blog/${post.slug}`}
-                className="mt-4 inline-flex text-sm font-semibold text-orange-600"
+                className="mt-4 inline-flex rounded-full border border-orange-300 px-4 py-2 text-sm font-semibold text-orange-700 transition hover:bg-orange-50"
               >
-                Read article
+                Read more
               </Link>
             </article>
           ))}

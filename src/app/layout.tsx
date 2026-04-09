@@ -13,6 +13,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.aalphaleo.com"),
   title: "Aalphaleo Digital Solution | Solving Your Business Problem.",
   description:
     "Premium Shopify custom-coded website development services for modern eCommerce brands.",

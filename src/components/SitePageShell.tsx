@@ -1,6 +1,6 @@
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
-import { publishedBlogPosts } from "@/lib/blog";
+import { blogPosts } from "@/lib/blogData";
 import { defaultSiteSettings } from "@/types/cms";
 
 type SitePageShellProps = {
@@ -9,7 +9,7 @@ type SitePageShellProps = {
 
 export function SitePageShell({ children }: SitePageShellProps) {
   const settings = defaultSiteSettings;
-  const blogs = publishedBlogPosts.slice(0, 3);
+  const blogs = blogPosts.slice(0, 3);
 
   return (
     <div className="relative overflow-hidden">

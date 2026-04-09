@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { SitePageShell } from "@/components/SitePageShell";
-import { getPublishedBlogBySlug } from "@/lib/blog";
+import { blogPosts, getBlogBySlug } from "@/lib/blogData";
 
 export const revalidate = 180;
 
@@ -12,8 +12,12 @@ type Params = {
   };
 };
 
+export function generateStaticParams() {
+  return blogPosts.map((post) => ({ slug: post.slug }));
+}
+
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const post = getPublishedBlogBySlug(params.slug);
+  const post = getBlogBySlug(params.slug);
 
   if (!post) {
     return {
@@ -29,6 +33,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title,
     description,
+    keywords: post.keywords,
     openGraph: {
       title,
       description,
@@ -46,7 +51,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 }
 
 export default async function BlogPostPage({ params }: Params) {
-  const post = getPublishedBlogBySlug(params.slug);
+  const post = getBlogBySlug(params.slug);
 
   if (!post) {
     notFound();
@@ -93,7 +98,7 @@ export default async function BlogPostPage({ params }: Params) {
             />
           ) : null}
           <div
-            className="prose prose-slate mt-8 max-w-none"
+            className="prose prose-slate mt-8 max-w-none prose-headings:text-slate-900 prose-a:text-orange-700"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </article>

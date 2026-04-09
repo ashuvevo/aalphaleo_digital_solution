@@ -3,45 +3,25 @@
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { defaultWebsiteContent, PricingPackage } from "@/types/cms";
 
-const plans = [
-  {
-    name: "Starter Package",
-    price: "₹10,000",
-    cta: "Get Starter Package",
-    featured: false,
-    features: [
-      "Shopify store setup",
-      "Custom homepage design",
-      "Mobile responsive layout",
-      "Product upload (10 products)",
-      "Payment gateway integration",
-      "Shipping setup",
-      "WhatsApp chat integration",
-      "Basic SEO setup",
-    ],
-  },
-  {
-    name: "Premium Package",
-    price: "₹20,000",
-    cta: "Get Premium Package",
-    featured: true,
-    features: [
-      "Fully custom coded Shopify website",
-      "Premium homepage design",
-      "Mobile + desktop responsive design",
-      "Product upload (30 products)",
-      "Payment gateway integration",
-      "Shipping partner integration",
-      "One click checkout integration",
-      "WhatsApp integration",
-      "Conversion optimized product pages",
-      "Speed optimized store",
-    ],
-  },
-];
+type PricingProps = {
+  heading?: string;
+  subheading?: string;
+  packages?: PricingPackage[];
+};
 
-export function Pricing() {
+export function Pricing({
+  heading = defaultWebsiteContent.pricing.heading,
+  subheading = defaultWebsiteContent.pricing.subheading,
+  packages = defaultWebsiteContent.pricing.packages,
+}: PricingProps) {
+  const plans = packages.map((item, index) => ({
+    ...item,
+    cta: `Get ${item.name}`,
+    featured: index === 1 || /premium/i.test(item.name),
+  }));
+
   return (
     <section id="pricing" className="section-shell py-20 sm:py-24">
       <motion.div
@@ -51,11 +31,9 @@ export function Pricing() {
         transition={{ duration: 0.6 }}
         className="mx-auto max-w-2xl text-center"
       >
-        <p className="text-sm font-semibold uppercase tracking-widest text-orange-600">
-          Pricing
-        </p>
+        <p className="text-sm font-semibold uppercase tracking-widest text-orange-600">{subheading}</p>
         <h2 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">
-          Shopify Website Packages
+          {heading}
         </h2>
       </motion.div>
 

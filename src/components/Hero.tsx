@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { BadgeCheck, MessageCircle } from "lucide-react";
+import { defaultWebsiteContent, WebsiteContentData } from "@/types/cms";
 
 const highlights = [
   "Custom coded Shopify websites",
@@ -10,7 +11,19 @@ const highlights = [
   "Conversion optimized product pages",
 ];
 
-export function Hero() {
+type HeroProps = {
+  content?: WebsiteContentData["hero"];
+  phone?: string;
+};
+
+function normalizePhoneToWhatsApp(phone: string) {
+  return phone.replace(/[^\d]/g, "");
+}
+
+export function Hero({ content, phone = "+91 9288621081" }: HeroProps) {
+  const hero = content ?? defaultWebsiteContent.hero;
+  const whatsappNumber = normalizePhoneToWhatsApp(phone);
+
   return (
     <section id="home" className="section-shell relative pt-16 sm:pt-20">
       <div className="grid items-center gap-10 lg:grid-cols-2">
@@ -22,14 +35,13 @@ export function Hero() {
           className="space-y-6"
         >
           <span className="inline-flex rounded-full border border-orange-100 bg-orange-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-orange-700">
-            Solving Your Business Problem.
+            {hero.badge}
           </span>
           <h1 className="text-4xl font-bold leading-tight text-slate-900 sm:text-5xl lg:text-6xl">
-            Build a Powerful Shopify Store for Your Business
+            {hero.title}
           </h1>
           <p className="max-w-xl text-lg leading-relaxed text-slate-600">
-            Launch your eCommerce business with a high-performance custom Shopify
-            website designed for conversions and scalability.
+            {hero.description}
           </p>
 
           <ul className="grid gap-3 sm:grid-cols-2">
@@ -43,16 +55,16 @@ export function Hero() {
 
           <div className="flex flex-col gap-3 pt-2 sm:flex-row">
             <a href="#contact" className="gradient-btn text-center">
-              Start Your Shopify Store
+              {hero.primaryCta}
             </a>
             <a
-              href="https://wa.me/919288621081"
+              href={`https://wa.me/${whatsappNumber}`}
               target="_blank"
               rel="noopener noreferrer"
               className="ghost-btn inline-flex items-center justify-center gap-2"
             >
               <MessageCircle className="h-4 w-4" />
-              Chat on WhatsApp
+              {hero.secondaryCta}
             </a>
           </div>
         </motion.div>

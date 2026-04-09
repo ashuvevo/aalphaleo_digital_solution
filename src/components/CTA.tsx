@@ -1,8 +1,20 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { defaultWebsiteContent } from "@/types/cms";
 
-export function CTA() {
+type CTAProps = {
+  content?: {
+    title: string;
+    description: string;
+    primaryText: string;
+    secondaryText: string;
+  };
+};
+
+export function CTA({ content }: CTAProps) {
+  const cta = content ?? defaultWebsiteContent.cta;
+
   return (
     <section className="section-shell py-20 sm:py-24">
       <motion.div
@@ -16,10 +28,9 @@ export function CTA() {
         <div className="absolute -bottom-16 left-10 h-44 w-44 rounded-full bg-orange-200/20 blur-2xl" />
 
         <div className="relative mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-bold sm:text-4xl">Launch Your Shopify Store Today</h2>
+          <h2 className="text-3xl font-bold sm:text-4xl">{cta.title}</h2>
           <p className="mx-auto mt-4 max-w-2xl text-base text-orange-100">
-            Start selling online with a professional Shopify website designed to
-            increase your sales.
+            {cta.description}
           </p>
 
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
@@ -27,13 +38,13 @@ export function CTA() {
               href="#contact"
               className="rounded-xl bg-white px-6 py-3 text-sm font-semibold text-orange-700 transition hover:-translate-y-0.5"
             >
-              Start Your Shopify Website
+              {cta.primaryText}
             </a>
             <a
               href="#contact"
               className="rounded-xl border border-white/50 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/10"
             >
-              Contact Us
+              {cta.secondaryText}
             </a>
           </div>
         </div>

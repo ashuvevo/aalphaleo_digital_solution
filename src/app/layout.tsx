@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import "react-quill/dist/quill.snow.css";
 
 const manrope = Manrope({
   subsets: ["latin"],

@@ -7,22 +7,27 @@ import { motion } from "framer-motion";
 import { ChevronDown, Menu, PhoneCall, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { serviceLinks } from "@/lib/services";
+import { defaultSiteSettings, SiteSettingsData } from "@/types/cms";
 
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Pricing", href: "/#pricing" },
-  { label: "Contact", href: "/#contact" },
-];
+type NavbarProps = {
+  settings?: SiteSettingsData;
+};
 
-export function Navbar() {
+function toTel(phone: string) {
+  return `tel:${phone.replace(/[^\d+]/g, "")}`;
+}
+
+export function Navbar({ settings }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const activeSettings = settings ?? defaultSiteSettings;
+  const navItems = activeSettings.navItems.filter((item) => item.label !== "Services");
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/60 bg-white/70 backdrop-blur-xl">
       <nav className="section-shell flex h-20 items-center justify-between">
         <Link href="/" className="text-slate-900" aria-label="Aalphaleo Digital Solution home">
           <Image
-            src="/logo.png"
+            src={activeSettings.logoUrl || "/logo.png"}
             alt="Aalphaleo Digital Solution logo"
             width={300}
             height={300}
@@ -67,10 +72,10 @@ export function Navbar() {
         </ul>
 
         <div className="hidden md:block">
-          <Link href="/#contact" className="gradient-btn inline-flex items-center gap-2">
+          <a href={toTel(activeSettings.phone)} className="gradient-btn inline-flex items-center gap-2">
             <PhoneCall className="h-4 w-4" />
             Get Free Consultation
-          </Link>
+          </a>
         </div>
 
         <button
@@ -122,14 +127,14 @@ export function Navbar() {
               {item.label}
             </Link>
           ))}
-          <Link
-            href="/#contact"
+          <a
+            href={toTel(activeSettings.phone)}
             className="gradient-btn inline-flex w-full items-center justify-center gap-2"
             onClick={() => setIsOpen(false)}
           >
             <PhoneCall className="h-4 w-4" />
             Get Free Consultation
-          </Link>
+          </a>
         </div>
       </motion.div>
     </header>

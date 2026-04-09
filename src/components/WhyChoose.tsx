@@ -2,16 +2,29 @@
 
 import { motion } from "framer-motion";
 import { BadgeCheck, Handshake, IndianRupee, Timer, Wrench } from "lucide-react";
+import { defaultWebsiteContent } from "@/types/cms";
 
-const items = [
-  { title: "Experienced developers", icon: BadgeCheck },
-  { title: "Custom coded solutions", icon: Wrench },
-  { title: "Affordable pricing", icon: IndianRupee },
-  { title: "Fast project delivery", icon: Timer },
-  { title: "Dedicated support", icon: Handshake },
+const fallbackItems = [
+  "Experienced developers",
+  "Custom coded solutions",
+  "Affordable pricing",
+  "Fast project delivery",
+  "Dedicated support",
 ];
 
-export function WhyChoose() {
+const icons = [BadgeCheck, Wrench, IndianRupee, Timer, Handshake];
+
+type WhyChooseProps = {
+  heading?: string;
+  items?: string[];
+};
+
+export function WhyChoose({
+  heading = defaultWebsiteContent.about.heading,
+  items = defaultWebsiteContent.about.items,
+}: WhyChooseProps) {
+  const activeItems = items.length > 0 ? items : fallbackItems;
+
   return (
     <section className="section-shell py-20 sm:py-24">
       <motion.div
@@ -22,14 +35,17 @@ export function WhyChoose() {
         className="mx-auto max-w-2xl text-center"
       >
         <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
-          Why Choose Aalphaleo Digital Solution
+          {heading}
         </h2>
       </motion.div>
 
       <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-        {items.map((item, index) => (
+        {activeItems.map((item, index) => {
+          const Icon = icons[index % icons.length];
+
+          return (
           <motion.div
-            key={item.title}
+            key={item}
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -37,11 +53,12 @@ export function WhyChoose() {
             className="surface-card p-5 text-center"
           >
             <div className="mx-auto inline-flex rounded-xl bg-orange-50 p-3 text-orange-600">
-              <item.icon className="h-5 w-5" />
+              <Icon className="h-5 w-5" />
             </div>
-            <p className="mt-3 text-sm font-semibold text-slate-800">{item.title}</p>
+            <p className="mt-3 text-sm font-semibold text-slate-800">{item}</p>
           </motion.div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

@@ -1,34 +1,37 @@
 import { CTA } from "@/components/CTA";
 import { Contact } from "@/components/Contact";
-import { Footer } from "@/components/Footer";
 import { Industries } from "@/components/Industries";
-import { Navbar } from "@/components/Navbar";
 import { Process } from "@/components/Process";
+import { SitePageShell } from "@/components/SitePageShell";
 import { ShopifySection } from "@/components/ShopifySection";
 import { WhyChoose } from "@/components/WhyChoose";
+import { getWebsiteContent } from "@/lib/cms";
 import { HeroSection } from "@/sections/HeroSection";
 import { PricingSection } from "@/sections/PricingSection";
 import { ServicesSection } from "@/sections/ServicesSection";
 
-export default function Home() {
-  return (
-    <div className="relative overflow-hidden">
-      <div className="pointer-events-none absolute -top-32 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-gradient-to-r from-orange-500/20 to-red-400/20 blur-3xl" />
-      <div className="pointer-events-none absolute right-0 top-80 h-[320px] w-[320px] rounded-full bg-gradient-to-r from-amber-300/25 to-orange-400/20 blur-3xl" />
+export default async function Home() {
+  const content = await getWebsiteContent();
 
-      <Navbar />
-      <main>
-        <HeroSection />
-        <ServicesSection />
+  return (
+    <SitePageShell>
+      <HeroSection content={content.hero} phone={content.contact.phone} />
+      <ServicesSection
+        heading={content.services.heading}
+        subheading={content.services.subheading}
+        items={content.services.items}
+      />
         <ShopifySection />
-        <PricingSection />
-        <WhyChoose />
+      <PricingSection
+        heading={content.pricing.heading}
+        subheading={content.pricing.subheading}
+        packages={content.pricing.packages}
+      />
+      <WhyChoose heading={content.about.heading} items={content.about.items} />
         <Process />
         <Industries />
-        <CTA />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+      <CTA content={content.cta} />
+      <Contact content={content.contact} />
+    </SitePageShell>
   );
 }

@@ -1,9 +1,26 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Globe, Phone } from "lucide-react";
+import { Globe, Mail, Phone } from "lucide-react";
+import { defaultWebsiteContent } from "@/types/cms";
 
-export function Contact() {
+type ContactProps = {
+  content?: {
+    heading: string;
+    description: string;
+    phone: string;
+    website: string;
+    email: string;
+  };
+};
+
+function toTel(phone: string) {
+  return `tel:${phone.replace(/[^\d+]/g, "")}`;
+}
+
+export function Contact({ content }: ContactProps) {
+  const contact = content ?? defaultWebsiteContent.contact;
+
   return (
     <section id="contact" className="section-shell py-20 sm:py-24">
       <div className="grid gap-6 lg:grid-cols-2">
@@ -14,28 +31,33 @@ export function Contact() {
           transition={{ duration: 0.55 }}
           className="surface-card p-6 sm:p-8"
         >
-          <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">Contact Us</h2>
+          <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">{contact.heading}</h2>
           <p className="mt-4 text-sm text-slate-600">
-            Tell us about your business goals and we will suggest the best Shopify
-            package for your growth.
+            {contact.description}
           </p>
 
           <div className="mt-8 space-y-4">
             <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
               <Phone className="h-4 w-4 text-orange-600" />
-              <a href="tel:+919288621081" className="text-sm font-medium text-slate-800">
-                +91 9288621081
+              <a href={toTel(contact.phone)} className="text-sm font-medium text-slate-800">
+                {contact.phone}
               </a>
             </div>
             <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
               <Globe className="h-4 w-4 text-orange-600" />
               <a
-                href="https://www.aalphaleo.com"
+                href={contact.website}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm font-medium text-slate-800"
               >
-                https://www.aalphaleo.com
+                {contact.website}
+              </a>
+            </div>
+            <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
+              <Mail className="h-4 w-4 text-orange-600" />
+              <a href={`mailto:${contact.email}`} className="text-sm font-medium text-slate-800">
+                {contact.email}
               </a>
             </div>
           </div>

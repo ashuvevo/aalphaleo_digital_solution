@@ -10,41 +10,61 @@ import {
   Smartphone,
 } from "lucide-react";
 import { serviceLinks } from "@/lib/services";
+import { defaultWebsiteContent, ServiceContentItem } from "@/types/cms";
 
-const services = [
+const iconMap: Record<string, typeof Globe> = {
+  "Shopify Development": ShoppingCart,
+  "Website Development": Globe,
+  "WooCommerce Development": LayoutDashboard,
+  "Mobile App Development": Smartphone,
+  "Digital Marketing": Megaphone,
+};
+
+const fallbackServices = [
   {
     title: "Shopify Development",
-    icon: ShoppingCart,
   },
   {
     title: "Website Development",
-    icon: Globe,
   },
   {
     title: "WooCommerce Development",
-    icon: LayoutDashboard,
   },
   {
     title: "Mobile App Development",
-    icon: Smartphone,
   },
   {
     title: "Digital Marketing",
-    icon: Megaphone,
   },
 ];
 
-const servicesWithRoutes = services.map((service) => {
-  const matchedRoute = serviceLinks.find((item) => item.label === service.title);
+type ServicesProps = {
+  heading?: string;
+  subheading?: string;
+  items?: ServiceContentItem[];
+};
 
-  return {
-    ...service,
-    href: matchedRoute?.href ?? "/services",
-    description: matchedRoute?.description ?? "",
-  };
-});
+export function Services({
+  heading = defaultWebsiteContent.services.heading,
+  subheading = defaultWebsiteContent.services.subheading,
+  items,
+}: ServicesProps) {
+  const activeItems = items ?? defaultWebsiteContent.services.items;
 
-export function Services() {
+  const servicesWithRoutes = (activeItems.length > 0
+    ? activeItems
+    : fallbackServices.map((item) => ({ ...item, description: "" }))
+  ).map((service) => {
+    const matchedRoute = serviceLinks.find((item) => item.label === service.title);
+
+    return {
+      ...service,
+      href: matchedRoute?.href ?? "/services",
+      description: service.description || matchedRoute?.description || "",
+      icon: iconMap[service.title] ?? Globe,
+    };
+  });
+
   return (
     <section id="services" className="section-shell py-20 sm:py-24">
       <motion.div
@@ -54,11 +74,9 @@ export function Services() {
         transition={{ duration: 0.6 }}
         className="mx-auto max-w-2xl text-center"
       >
-        <p className="text-sm font-semibold uppercase tracking-widest text-orange-600">
-          Services
-        </p>
+        <p className="text-sm font-semibold uppercase tracking-widest text-orange-600">{subheading}</p>
         <h2 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">
-          Our Digital Services
+          {heading}
         </h2>
       </motion.div>
 

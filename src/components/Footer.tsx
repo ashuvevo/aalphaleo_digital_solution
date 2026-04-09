@@ -1,18 +1,12 @@
+import Link from "next/link";
 import { Globe, MessageCircle, Phone, Send } from "lucide-react";
+import { serviceLinks } from "@/lib/services";
 
 const quickLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Services", href: "#services" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Contact", href: "#contact" },
-];
-
-const serviceLinks = [
-  "Shopify Development",
-  "Website Development",
-  "WooCommerce",
-  "Mobile App Development",
-  "Digital Marketing",
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export function Footer() {
@@ -22,6 +16,19 @@ export function Footer() {
         <div className="space-y-3 lg:col-span-2">
           <p className="text-lg font-bold text-slate-900">Aalphaleo Digital Solution</p>
           <p className="text-sm text-slate-600">Solving Your Business Problem.</p>
+          <div className="space-y-2 pt-1">
+            <a href="tel:+919288621081" className="block text-sm text-slate-600 hover:text-slate-900">
+              Phone: +91 9288621081
+            </a>
+            <a
+              href="https://www.aalphaleo.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-sm text-slate-600 hover:text-slate-900"
+            >
+              Website: https://www.aalphaleo.com
+            </a>
+          </div>
           <div className="flex gap-2 pt-2">
             {[Globe, MessageCircle, Send, Phone].map((Icon, index) => (
               <a
@@ -43,9 +50,9 @@ export function Footer() {
           <ul className="mt-4 space-y-2">
             {quickLinks.map((link) => (
               <li key={link.href}>
-                <a href={link.href} className="text-sm text-slate-600 hover:text-slate-900">
+                <Link href={link.href} className="text-sm text-slate-600 hover:text-slate-900">
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -57,8 +64,10 @@ export function Footer() {
           </p>
           <ul className="mt-4 space-y-2">
             {serviceLinks.map((service) => (
-              <li key={service} className="text-sm text-slate-600">
-                {service}
+              <li key={service.href}>
+                <Link href={service.href} className="text-sm text-slate-600 hover:text-slate-900">
+                  {service.label}
+                </Link>
               </li>
             ))}
           </ul>

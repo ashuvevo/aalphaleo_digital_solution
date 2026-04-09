@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { SitePageShell } from "@/components/SitePageShell";
-import { prisma } from "@/lib/prisma";
+import { getPublishedBlogBySlug } from "@/lib/cms";
+
+export const revalidate = 180;
 
 type Params = {
   params: {
@@ -11,9 +13,9 @@ type Params = {
 };
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const post = await prisma.blogPost.findUnique({ where: { slug: params.slug } });
+  const post = await getPublishedBlogBySlug(params.slug);
 
-  if (!post || !post.isPublished) {
+  if (!post) {
     return {
       title: "Blog | Aalphaleo Digital Solution",
       description: "Blog post not found.",
@@ -44,9 +46,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 }
 
 export default async function BlogPostPage({ params }: Params) {
-  const post = await prisma.blogPost.findUnique({ where: { slug: params.slug } });
+  const post = await getPublishedBlogBySlug(params.slug);
 
-  if (!post || !post.isPublished) {
+  if (!post) {
     notFound();
   }
 

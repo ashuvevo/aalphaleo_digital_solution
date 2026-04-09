@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { requireAdminSession } from "@/lib/admin-session";
+import { revalidatePublishedBlogsCache } from "@/lib/cms";
 import { prisma } from "@/lib/prisma";
 
 function toSlug(value: string) {
@@ -56,6 +57,8 @@ export async function POST(request: Request) {
       metaDescription: body.metaDescription || null,
     },
   });
+
+  revalidatePublishedBlogsCache();
 
   return NextResponse.json(post, { status: 201 });
 }

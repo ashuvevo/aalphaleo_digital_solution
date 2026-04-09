@@ -10,6 +10,8 @@ import { HeroSection } from "@/sections/HeroSection";
 import { PricingSection } from "@/sections/PricingSection";
 import { ServicesSection } from "@/sections/ServicesSection";
 
+export const revalidate = 300;
+
 export default async function Home() {
   const content = await getWebsiteContent();
 

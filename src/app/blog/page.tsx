@@ -4,6 +4,8 @@ import Link from "next/link";
 import { SitePageShell } from "@/components/SitePageShell";
 import { getPublishedBlogs } from "@/lib/cms";
 
+export const revalidate = 180;
+
 export const metadata: Metadata = {
   title: "Blog | Aalphaleo Digital Solution",
   description: "Insights on Shopify development, digital marketing, and business growth.",
